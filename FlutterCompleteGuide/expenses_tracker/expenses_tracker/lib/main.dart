@@ -1,4 +1,5 @@
-import 'package:expenses_tracker/transaction.dart';
+import 'package:expenses_tracker/model/transaction.dart';
+import 'package:expenses_tracker/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -15,12 +16,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'Weekly Grocery', amount: 16.99, date: DateTime.now()),
-  ];
 
   // String titleInput;
   // String amountInput;
@@ -79,56 +74,8 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                  child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                      color: Colors.purple,
-                      width: 2,
-                    )),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      '\$${tx.amount}', //String Interpolation
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tx.title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade800,
-                        ),
-                      ),
-                      Text(
-                        DateFormat.yMMMd().format(tx.date),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ));
-            }).toList(),
-          ),
+          //Need to do - Lifting State up - to pass on the value from MainDart to TransactionList Widget
+          TransactionList()
         ],
       ),
     );
