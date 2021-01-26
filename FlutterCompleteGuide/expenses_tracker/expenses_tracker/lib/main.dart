@@ -1,6 +1,7 @@
 import 'package:expenses_tracker/model/transaction.dart';
 import 'package:expenses_tracker/widgets/new_transaction.dart';
 import 'package:expenses_tracker/widgets/transaction_list.dart';
+import 'package:expenses_tracker/widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -42,9 +43,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          NewTransaction(),
-          //Need to do - Lifting State up - to pass on the value from MainDart to TransactionList Widget
-          TransactionList()
+          UserTransactions()
         ],
       ),
     );
