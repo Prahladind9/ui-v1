@@ -14,10 +14,10 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      //ListView.builder() - loads only the visible elements > saves memory > but have to maintain pagination
       //ListView(children: []) - loads almost all the elements > leads to Memory Constraints
-      child: ListView(
-        children: transactions.map((tx) {
+      //ListView.builder() - loads only the visible elements > saves memory > performance improvement
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
           return Card(
               child: Row(
                 children: [
@@ -33,7 +33,7 @@ class TransactionList extends StatelessWidget {
                         )),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      '\$${tx.amount}', //String Interpolation
+                      '\$${transactions[index].amount}', //String Interpolation
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -45,7 +45,7 @@ class TransactionList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        tx.title,
+                        transactions[index].title,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat.yMMMd().format(tx.date),
+                        DateFormat.yMMMd().format(transactions[index].date),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -64,7 +64,8 @@ class TransactionList extends StatelessWidget {
                   )
                 ],
               ));
-        }).toList(),
+        },
+        itemCount: transactions.length,
       ),
     );
   }
