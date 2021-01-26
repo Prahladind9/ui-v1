@@ -1,4 +1,5 @@
 import 'package:expenses_tracker/model/transaction.dart';
+import 'package:expenses_tracker/widgets/new_transaction.dart';
 import 'package:expenses_tracker/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -20,8 +21,8 @@ class MyHomePage extends StatelessWidget {
   // String titleInput;
   // String amountInput;
 
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+  //Home Widget can stay stateless > Scaffold, AppBar will not be rebuild >
+  // just because new transactions are added
 
   @override
   Widget build(BuildContext context) {
@@ -41,39 +42,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Title',
-                    ),
-                    controller: titleController,
-                    // onChanged: (value) {
-                    //   titleInput = value;
-                    // },
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Amount',
-                    ),
-                    controller: amountController,
-                    // onChanged: (val) => amountInput = val,
-                  ),
-                  FlatButton(
-                      child: Text('Add Transaction'),
-                      textColor: Colors.purple,
-                      onPressed: () {
-                        print(titleController.value);
-                        print(amountController.value);
-                      })
-                ],
-              ),
-            ),
-          ),
+          NewTransaction(),
           //Need to do - Lifting State up - to pass on the value from MainDart to TransactionList Widget
           TransactionList()
         ],
