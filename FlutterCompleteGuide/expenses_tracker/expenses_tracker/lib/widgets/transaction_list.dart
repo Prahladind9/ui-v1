@@ -11,63 +11,58 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 300,
-        //ListView(children: []) - loads almost all the elements > leads to Memory Constraints
-        //ListView.builder() - loads only the visible elements > saves memory > performance improvement
-        child: transactions.isEmpty
-            ? Column(
-                children: [
-                  Text(
-                    'No transactions added yet!',
+    return transactions.isEmpty
+        ? LayoutBuilder(builder: (ctx, constraints) {
+            return Column(
+              children: [
+                Text(
+                  'No transactions added yet!',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                SizedBox(
+                  height: constraints.maxHeight * 0.05,
+                ),
+                Container(
+                    height: constraints.maxHeight * 0.6,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    )),
+              ],
+            );
+          })
+        : ListView.builder(
+            itemBuilder: (ctx, index) {
+              return Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 5,
+                ),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                        padding: EdgeInsets.all(6),
+                        child:
+                            Text('\$${transactions[index].amount.toString()}')),
+                  ),
+                  title: Text(
+                    transactions[index].title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  SizedBox(
-                    height: 10,
+                  subtitle: Text(
+                    DateFormat.yMMMd().format(transactions[index].date),
                   ),
-                  Container(
-                      height: 200,
-                      child: Image.asset(
-                        'assets/images/waiting.png',
-                        fit: BoxFit.cover,
-                      )),
-                ],
-              )
-            : ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return Card(
-                    elevation: 5,
-                    margin: EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 5,
-                    ),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Padding(
-                            padding: EdgeInsets.all(6),
-                            child: Text(
-                                '\$${transactions[index].amount.toString()}')),
-                      ),
-                      title: Text(
-                        transactions[index].title,
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      subtitle: Text(
-                        DateFormat.yMMMd().format(transactions[index].date),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        color: Theme.of(context).errorColor,
-                        onPressed: () => delteTx(transactions[index].id),
-                      ),
-                    ),
-                  );
-                },
-                itemCount: transactions.length,
-              ),
-      ),
-    );
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () => delteTx(transactions[index].id),
+                  ),
+                ),
+              );
+            },
+            itemCount: transactions.length,
+          );
   }
 }
