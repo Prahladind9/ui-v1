@@ -1,0 +1,54 @@
+* {
+	text-align: center;
+}
+
+body {
+	background-image: url(background.jpg);
+	background-size: cover;
+}
+
+img {
+	float: right;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+}
+
+h2 {
+	color: #2B4C6F;
+	text-align: center;
+	border: 5px solid rgba(115, 140, 166, 0.3);
+	cursor: pointer;
+}
+
+p {
+	line-height: 20px;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 90%;
+	font-family: 'Klee One', cursive;
+}
+
+li {
+	list-style: none;
+	display: inline-block;
+}
+
+.webtext {
+	border: 5px dotted skyblue;
+}
+
+.active{
+	color: orangered;
+}
+
+#div1{
+	background: rgba(0, 0, 255, 0.1);
+}
+
+#div2{
+	background: rgba(0, 255, 0, 0.1);
+}
+
