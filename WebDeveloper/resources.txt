@@ -6,3 +6,8 @@ https://fonts.google.com/
 https://blog.hubspot.com/website/css-margin-vs-padding
 https://cssminifier.com/
 https://flexboxfroggy.com/
+https://getbootstrap.com/
+https://get.foundation/
+https://startbootstrap.com/
+http://www.mashup-template.com/
+https://mailchimp.com/
