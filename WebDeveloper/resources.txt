@@ -13,3 +13,5 @@ http://www.mashup-template.com/
 https://mailchimp.com/
 https://www.creative-tim.com/templates/react-free
 https://caniuse.com/
+https://grid.malven.co/
+https://undraw.co/illustrations
